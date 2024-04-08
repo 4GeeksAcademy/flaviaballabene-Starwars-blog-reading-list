@@ -81,7 +81,7 @@ export const Single = () => {
             <div className=" mb-3 row" style={{ width: "60rem" }}>
               <div className="row g-0">
                 <div className="col-md-4">
-                  <img src={image} className="card-img-top mt-3" alt="..." />
+                  <img src={image} className="card-img-top mt-3" alt="Star Wars Person" />
                 </div>
                 <div className="col-md-8">
                   <div className="card-body">
@@ -167,7 +167,7 @@ export const Single = () => {
             <div className=" mb-3 row" style={{ width: "60rem" }}>
               <div className="row g-0">
                 <div className="col-md-4">
-                  <img src={image} className="card-img-top mt-3" alt="..." />
+                  <img src={image} className="card-img-top mt-3" alt="Star Wars Planet" />
                 </div>
                 <div className="col-md-8">
                   <div className="card-body">
@@ -240,7 +240,7 @@ export const Single = () => {
             <div className=" mb-3 row" style={{ width: "60rem" }}>
               <div className="row g-0">
                 <div className="col-md-4">
-                  <img src={image} className="card-img-top mt-3" alt="..." />
+                  <img src={image} className="card-img-top mt-3" alt="Star Wars Vehicle" />
                 </div>
                 <div className="col-md-8">
                   <div className="card-body">

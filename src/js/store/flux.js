@@ -44,98 +44,149 @@
 
 // export default getState;
 
-
-
-
 const getState = ({ getStore, getActions, setStore }) => {
-    return {
-        store: {
-            people: [],
-            vehicles: [],
-            planets: [],
-            favorites: []
-        },
-        actions: {
-            fetchPeople: async () => {
-				try {
-					const response = await fetch("https://www.swapi.tech/api/people/");
-					const data = await response.json();
-					setStore({ people: data.results });
-				} catch (error) {
-					console.error("Error fetching people:", error);
-				}
-			},
-
-            fetchPerson: async () => {
-				try {
-					const response = await fetch("https://www.swapi.tech/api/people/id/");
-					const data = await response.json();
-					setStore({ people: data.results });
-				} catch (error) {
-					console.error("Error fetching people:", error);
-				}
-			},
-			
-            fetchVehicles: async () => {
-                try {
-                    const response = await fetch("https://www.swapi.tech/api/vehicles/");
-                    const data = await response.json();
-                    setStore({ vehicles: data.results });
-                } catch (error) {
-                    console.error("Error fetching vehicles:", error);
-                }
-            },
-
-            fetchVehicle: async () => {
-                try {
-                    const response = await fetch("https://www.swapi.tech/api/vehicles/id/");
-                    const data = await response.json();
-                    setStore({ vehicles: data.results });
-                } catch (error) {
-                    console.error("Error fetching vehicles:", error);
-                }
-            },
-
-            fetchPlanets: async () => {
-                try {
-                    const response = await fetch("https://www.swapi.tech/api/planets/");
-                    const data = await response.json();
-                    setStore({ planets: data.results });
-                } catch (error) {
-                    console.error("Error fetching planets:", error);
-                }
-            },
-
-            fetchPlanet: async () => {
-                try {
-                    const response = await fetch("https://www.swapi.tech/api/planets/id/");
-                    const data = await response.json();
-                    setStore({ planets: data.results });
-                } catch (error) {
-                    console.error("Error fetching planets:", error);
-                }
-            },
-
-            addToFavorites: (element) => {
-                const { favorites } = getStore();
-                setStore({ favorites: [...favorites, element] });
-              },
-
-            deleteElement: (id) => {
-            const { favorites } = getStore();
-            const updatedFavorites = favorites.filter((favorite) => favorite.id !== id);
-            setStore({ favorites: updatedFavorites });
-            }      
+  return {
+    store: {
+      people: [],
+      vehicles: [],
+      planets: [],
+      favorites: [],
+    //   images: [{
+    //     name: "Luke Skywalker",
+    //     img: "https://starwars-visualguide.com/assets/img/characters/1.jpg"
+    //   },
+    //   {
+    //     name: "C-3PO",
+    //     img: "https://starwars-visualguide.com/assets/img/characters/2.jpg"
+    //   },
+    //   {
+    //     name: "R2-D2",
+    //     img: ""
+    //   },
+    //   {
+    //     name: "Darth Vader",
+    //     img: ""
+    //   },
+    //   {
+    //     name: "Leia Organa",
+    //     img: ""
+    //   },
+    //   {
+    //     name: "Owen Lars",
+    //     img: ""
+    //   },
+    //   {
+    //     name: "Beru Whitesun lars",
+    //     img: ""
+    //   },
+    //   {
+    //     name: "R5-D4",
+    //     img: ""
+    //   },
+    //   {
+    //     name: "Biggs Darklighter",
+    //     img: ""
+    //   },
+    //   {
+    //     name: "Obi-Wan Kenobi",
+    //     img: ""
+    //   },
+    //   {
+    //     name: "",
+    //     img: ""
+    //   },
+    //   {
+    //     name: "",
+    //     img: ""
+    //   },
+    //   {
+    //     name: "",
+    //     img: ""
+    //   },
+    
+    
+    
+    
+    // ]
+    },
+    actions: {
+      fetchPeople: async () => {
+        try {
+          const response = await fetch("https://www.swapi.tech/api/people/");
+          const data = await response.json();
+          setStore({ people: data.results });
+        } catch (error) {
+          console.error("Error fetching people:", error);
         }
-    };
+      },
+
+      fetchPerson: async () => {
+        try {
+          const response = await fetch("https://www.swapi.tech/api/people/id/");
+          const data = await response.json();
+          setStore({ people: data.results });
+        } catch (error) {
+          console.error("Error fetching people:", error);
+        }
+      },
+
+      fetchVehicles: async () => {
+        try {
+          const response = await fetch("https://www.swapi.tech/api/vehicles/");
+          const data = await response.json();
+          setStore({ vehicles: data.results });
+        } catch (error) {
+          console.error("Error fetching vehicles:", error);
+        }
+      },
+
+      fetchVehicle: async () => {
+        try {
+          const response = await fetch(
+            "https://www.swapi.tech/api/vehicles/id/"
+          );
+          const data = await response.json();
+          setStore({ vehicles: data.results });
+        } catch (error) {
+          console.error("Error fetching vehicles:", error);
+        }
+      },
+
+      fetchPlanets: async () => {
+        try {
+          const response = await fetch("https://www.swapi.tech/api/planets/");
+          const data = await response.json();
+          setStore({ planets: data.results });
+        } catch (error) {
+          console.error("Error fetching planets:", error);
+        }
+      },
+
+      fetchPlanet: async () => {
+        try {
+          const response = await fetch(
+            "https://www.swapi.tech/api/planets/id/"
+          );
+          const data = await response.json();
+          setStore({ planets: data.results });
+        } catch (error) {
+          console.error("Error fetching planets:", error);
+        }
+      },
+
+      addToFavorites: (element) => {
+        const { favorites } = getStore();
+        if (!favorites.find(favorite => favorite === element)) {
+            setStore({ favorites: [...favorites, element] });
+        }
+    },
+    
+
+      deleteElement: (index) => {
+        setStore({ favorites: getStore().favorites.filter((favorite, idx) => idx !== index)});
+      }, 
+    },
+  };
 };
 
 export default getState;
-
-
-
-// addToFavorites: (element) => {
-//     const { favorites } = getStore();
-//     const newFavorite = { id: favorites.length + 1, name: element }; // Assign a unique id
-//     setStore({ favorites: [...favorites, newFavorite] });
-// },

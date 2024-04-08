@@ -36,21 +36,21 @@ export const Home = () => {
       <div className="mb-3 d-flex justify-content-center">
         <div
           className="d-flex flex-column align-items-center"
-          style={{ width: "80rem" }}
+          style={{ width: "140rem" }}
         >
           <div className="col-12">
             <h1 style={{ color: "red" }}>People</h1>
           </div>
           <div
             className="d-flex justify-content-between"
-            style={{ width: "80rem" }}
+            style={{ width: "140rem" }}
           >
             {store.people.map((person, index) => (
               <div className="card" style={{ width: "18rem" }} key={person.id}>
                 <img
-                  src={starWarsLogo}
+                  src={`https://starwars-visualguide.com/assets/img/characters/${index + 1}.jpg`}
                   className="card-img-top"
-                  alt="Star Wars Logo"
+                  alt="Star Wars Person"
                 />
                 <div className="card-body">
                   <h5 className="card-title">{person.name}</h5>
@@ -86,18 +86,18 @@ export const Home = () => {
       <div className="mb-3 d-flex justify-content-center">
         <div
           className="d-flex flex-column align-items-center"
-          style={{ width: "80rem" }}
+          style={{ width: "140rem" }}
         >
           <div className="col-12">
             <h1 style={{ color: "red" }}>Vehicles</h1>
           </div>
           <div
             className="d-flex justify-content-between"
-            style={{ width: "80rem" }}
+            style={{ width: "140rem" }}
           >
             {store.vehicles.map((vehicle) => (
               <div className="card" style={{ width: "18rem" }}>
-                <img src={starWarsLogo} className="card-img-top" alt="..." />
+                <img src={starWarsLogo} className="card-img-top" alt="Star Wars Vehicle" />
                 <div className="card-body">
                   <h5 className="card-title">{vehicle.name}</h5>
                   <p className="card-text">Model: {vehicle.model}</p>
@@ -109,7 +109,7 @@ export const Home = () => {
                     <a href="#" className="btn btn-outline-primary">
                       Learn more!
                     </a>
-                    <button type="button" className="btn btn-outline-warning">
+                    <button type="button" className="btn btn-outline-warning" onClick={() => actions.addToFavorites(vehicle.name)}>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"
@@ -132,18 +132,18 @@ export const Home = () => {
       <div className="mb-3 d-flex justify-content-center">
         <div
           className="d-flex flex-column align-items-center"
-          style={{ width: "80rem" }}
+          style={{ width: "140rem" }}
         >
           <div className="col-12">
             <h1 style={{ color: "red" }}>Planets</h1>
           </div>
           <div
             className="d-flex justify-content-between"
-            style={{ width: "80rem" }}
+            style={{ width: "140rem" }}
           >
             {store.planets.map((planet, index) => (
               <div className="card" style={{ width: "18rem" }}>
-                <img src={starWarsLogo} className="card-img-top" alt="..." />
+                <img src={`https://starwars-visualguide.com/assets/img/planets/${index + 1}.jpg`} className="card-img-top" alt="Star Wars Planet" />
                 <div className="card-body">
                   <h5 className="card-title">{planet.name}</h5>
                   <p className="card-text">Population: {planet.population}</p>
@@ -154,7 +154,7 @@ export const Home = () => {
                         Learn more!
                       </a>
                     </Link>
-                    <button type="button" className="btn btn-outline-warning">
+                    <button type="button" className="btn btn-outline-warning" onClick={() => actions.addToFavorites(planet.name)}>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"
