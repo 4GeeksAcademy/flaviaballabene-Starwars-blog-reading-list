@@ -19,6 +19,7 @@ import "../../styles/home.css";
 import starWarsLogo from "../../img/Star-Wars-Logo-1.png";
 import { Context } from "../store/appContext";
 import { Link, useParams } from "react-router-dom";
+import { Card } from "../component/card";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
@@ -30,7 +31,7 @@ export const Home = () => {
     actions.fetchVehicles();
     actions.fetchPlanets();
   }, []);
-
+console.log(store.people)
   return (
     <div>
       <div className="mb-3 d-flex justify-content-center">
@@ -46,38 +47,7 @@ export const Home = () => {
             style={{ width: "140rem" }}
           >
             {store.people.map((person, index) => (
-              <div className="card" style={{ width: "18rem" }} key={person.id}>
-                <img
-                  src={`https://starwars-visualguide.com/assets/img/characters/${index + 1}.jpg`}
-                  className="card-img-top"
-                  alt="Star Wars Person"
-                />
-                <div className="card-body">
-                  <h5 className="card-title">{person.name}</h5>
-                  <p className="card-text">Gender: {person.gender}</p>
-                  <p className="card-text">Hair Color: {person.hair_color}</p>
-                  <p className="card-text">Eye Color: {person.eye_color}</p>
-                  <span className="d-flex justify-content-between">
-                    <Link to={`/people/${index + 1}`}>
-                      <a href="#" className="btn btn-outline-primary">
-                        Learn more!
-                      </a>
-                    </Link>
-                    <button type="button" className="btn btn-outline-warning" onClick={() => actions.addToFavorites(person.name)}>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        fill="currentColor"
-                        className="bi bi-heart"
-                        viewBox="0 0 16 16"
-                      >
-                        <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15" />
-                      </svg>
-                    </button>
-                  </span>
-                </div>
-              </div>
+              <Card item= {person} category="people"/>
             ))}
           </div>
         </div>
@@ -95,35 +65,8 @@ export const Home = () => {
             className="d-flex justify-content-between"
             style={{ width: "140rem" }}
           >
-            {store.vehicles.map((vehicle) => (
-              <div className="card" style={{ width: "18rem" }}>
-                <img src={starWarsLogo} className="card-img-top" alt="Star Wars Vehicle" />
-                <div className="card-body">
-                  <h5 className="card-title">{vehicle.name}</h5>
-                  <p className="card-text">Model: {vehicle.model}</p>
-                  <p className="card-text">Passengers: {vehicle.passengers}</p>
-                  <p className="card-text">
-                    Manufacturer: {vehicle.manufacturer}
-                  </p>
-                  <span className="d-flex justify-content-between">
-                    <a href="#" className="btn btn-outline-primary">
-                      Learn more!
-                    </a>
-                    <button type="button" className="btn btn-outline-warning" onClick={() => actions.addToFavorites(vehicle.name)}>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        fill="currentColor"
-                        className="bi bi-heart"
-                        viewBox="0 0 16 16"
-                      >
-                        <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15" />
-                      </svg>
-                    </button>
-                  </span>
-                </div>
-              </div>
+            {store.vehicles.map((vehicle, index) => (
+             <Card item= {vehicle} category="vehicles"/>
             ))}
           </div>
         </div>
@@ -142,33 +85,7 @@ export const Home = () => {
             style={{ width: "140rem" }}
           >
             {store.planets.map((planet, index) => (
-              <div className="card" style={{ width: "18rem" }}>
-                <img src={`https://starwars-visualguide.com/assets/img/planets/${index + 1}.jpg`} className="card-img-top" alt="Star Wars Planet" />
-                <div className="card-body">
-                  <h5 className="card-title">{planet.name}</h5>
-                  <p className="card-text">Population: {planet.population}</p>
-                  <p className="card-text">Terrain: {planet.terrain}</p>
-                  <span className="d-flex justify-content-between">
-                    <Link to={`/planets/${index + 1}`}>
-                      <a href="#" className="btn btn-outline-primary">
-                        Learn more!
-                      </a>
-                    </Link>
-                    <button type="button" className="btn btn-outline-warning" onClick={() => actions.addToFavorites(planet.name)}>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        fill="currentColor"
-                        className="bi bi-heart"
-                        viewBox="0 0 16 16"
-                      >
-                        <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15" />
-                      </svg>
-                    </button>
-                  </span>
-                </div>
-              </div>
+              <Card item= {planet} category="planets"/>
             ))}
           </div>
         </div>
