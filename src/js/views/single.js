@@ -132,7 +132,79 @@ const renderData = (data, elementType) => {
           </div>
         </div>
       );
-  }
+      case "planets":
+        return 
+        (
+          <div
+            className="card mb-3 flex-column d-flex justify-content-center align-items-center"
+            style={{ width: "80rem", minWidth: "190vh" }}
+          >
+            <div className=" mb-3 row" style={{ width: "60rem" }}>
+              <div className="row g-0">
+                <div className="col-md-4">
+                  <img src={image} className="card-img-top mt-3" alt="Star Wars Planet" />
+                </div>
+                <div className="col-md-8">
+                  <div className="card-body">
+                    <h5 className="card-title fs-1 ms-5">{data.name}</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="card row mb-3 mt-2 container text-center border-top"
+              style={{ minWidth: "130vh" }} //width
+            >
+              <div className="row mt-3">
+                <div className="col text-start">
+                  <strong>Rotation Period:</strong> {data.rotation_period}
+                </div>
+                <div className="col text-start">
+                  <strong>Orbital Period:</strong> {data.orbital_period}
+                </div>
+                <div className="col text-start">
+                  <strong>Diameter:</strong> {data.diameter}
+                </div>
+                <div className="col text-start">
+                  <strong>Climate:</strong> {data.climate}
+                </div>
+                <div className="col text-start">
+                  <strong>Gravity:</strong> {data.gravity}
+                </div>
+                <div className="col text-start">
+                  <strong>Terrain:</strong> {data.terrain}
+                </div>
+                <div className="col text-start">
+                  <strong>Surface Water:</strong> {data.surface_water}
+                </div>
+                <div className="col text-start">
+                  <strong>Population:</strong> {data.population}
+                </div>
+                <div className="col text-start">
+                  <strong>Residents:</strong>
+                  <ul>
+                    {data.residents.map((residents, index) => (
+                      <li key={index}>
+                        <a href={residents}>{residents}</a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="col text-start">
+                  <strong>Films:</strong>
+                  <ul>
+                    {data.films.map((film, index) => (
+                      <li key={index}>
+                        <a href={film}>{film}</a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        );;
+    }
 };
 
 if (!data) <div>No Data Available</div>;
